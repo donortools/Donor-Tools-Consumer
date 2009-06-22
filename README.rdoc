@@ -1,0 +1,45 @@
+= Donor Tools API Consumer
+
+== Welcome to the Donor Tools Consumer example application. 
+
+Before you get started, please have a look at our API documentation on our support forum: http://support.donortools.com/forums/47417/entries
+
+Note to Rails developers: Donor Tools won't work out of the box with ActiveResource. This is because we use a customized version of the WillPaginate plugin that provides pagination collection information. You can download our fork of the gem from Github: http://github.com/artofmission/will_paginate/tree/master. 
+
+== Authentication
+
+Donor Tools' API uses HTTP Basic authentication. You'll need to sign up for a Donor Tools account (if you don't have one already.)
+
+== User Account
+
+You'll need to sign up for a Donor Tools account in order to use the API. If you don't already have a Donor Tools account, you can get one by going to www.donortools.com/signup.
+
+Donor Tools' auditing feature logs each and every action for your account. Thus, if you provide your own username and password for the API (not recommended), all actions through the API will appear as being committed by you. We recommend creating a separate API user to provide finer grained reporting detail. This technique also helps protect your personal authentication parameters, as you can provide a different username and password. 
+
+== Example Usage
+
+This example app uses ActiveResource to communicate with the Donor Tools API. Here's an example of the donation.rb file: 
+
+  class Donation < ActiveResource::Base
+    self.site = "http://youraccount.donortools.com"
+    self.user = "your_donor_tools_username"
+    self.password = "your_password"
+  end
+
+To get a list of donations, you'd open up ./script/console, and type: 
+
+  Donation.find(:all)
+
+=== Finding a specific donation
+
+  Donation.find(12345)
+
+=== Updating a donation
+
+  d = Donation.find(12345)
+  d.splits.first.cents = 5001
+  d.save
+
+== License
+
+The Donor Tools API is a beta product and is subject to the API License Agreement: http://www.donortools.com/about/api_license
