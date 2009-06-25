@@ -40,3 +40,5 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 require 'ruby-debug'
+
+APP_CONFIG = YAML.load(File.read(RAILS_ROOT + "/config/config.yml"))[RAILS_ENV].symbolize_keys
