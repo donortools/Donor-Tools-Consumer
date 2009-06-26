@@ -6,6 +6,10 @@ Before you get started, please have a look at our API documentation on our suppo
 
 Note to Rails developers: Donor Tools won't work out of the box with ActiveResource. This is because we use a customized version of the WillPaginate plugin that provides pagination collection information. You can download our fork of the gem from Github: http://github.com/artofmission/will_paginate/tree/master. 
 
+== License
+
+The Donor Tools API is a beta product and is subject to the API License Agreement: http://www.donortools.com/about/api_license
+
 == Authentication
 
 Donor Tools' API uses HTTP Basic authentication. You'll need to sign up for a Donor Tools account (if you don't have one already.)
@@ -39,7 +43,17 @@ To get a list of donations, you'd open up ./script/console, and type:
   d = Donation.find(12345)
   d.splits.first.cents = 5001
   d.save
+  
+=== Creating a donation
 
-== License
+  persona = Persona.find(104996)
+  fund = Fund.find(11058)
+  source = Source.find(986)
+  donation = Donation.new(
+    :persona_id => persona.id, 
+    :new_split_attributes => [{:cents => 5002, :fund_id => fund.id}], 
+    :donation_type_id => 1,
+    :source_id => source.id
+  )
+  donation.save
 
-The Donor Tools API is a beta product and is subject to the API License Agreement: http://www.donortools.com/about/api_license
