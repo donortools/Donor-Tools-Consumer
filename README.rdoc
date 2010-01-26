@@ -63,6 +63,8 @@ To get a list of donations, you'd open up ./script/console, and type:
   
 === Creating a donor
 
+Donor Tools uses Rails' concept of nested attributes (http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html). 
+  
   persona = Persona.new(
     :names_attributes => [
       {
