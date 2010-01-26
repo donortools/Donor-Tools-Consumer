@@ -57,3 +57,37 @@ To get a list of donations, you'd open up ./script/console, and type:
   )
   donation.save
 
+=== Finding a donor
+
+  persona = Persona.find(12345)
+  
+=== Creating a donor
+
+  persona = Persona.new(
+    :names_attributes => [
+      {
+        :first_name => "John", 
+        :last_name => "Rockefeller"
+      }
+    ], 
+    :addresses_attributes => [
+      {
+        :street_address => "123 Fourth St.", 
+        :city => "Miami", 
+        :state => "FL",
+        :postal_code => "12345",
+        :country => "US"
+      }
+    ],
+    :phone_numbers_attributes => [
+      {
+        :phone_number => "555-555-1234"
+      }
+    ],
+    :email_addresses_attributes => [
+      {
+        :email_address => "test@example.com"
+      }
+    ]
+  )
+  
