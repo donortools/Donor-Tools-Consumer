@@ -2,7 +2,7 @@
 
 == Welcome to the Donor Tools Consumer example application. 
 
-Before you get started, please have a look at our API documentation on our support forum: http://support.donortools.com/forums/47417/entries
+Before you get started, please have a look at our API documentation in our User Guide: http://localhost:3000/userguide/api and on our support forum: http://support.donortools.com/forums/47417/entries
 
 Note to Rails developers: Donor Tools won't work out of the box with ActiveResource. This is because we use a customized version of the WillPaginate plugin that provides pagination collection information. You can download our fork of the gem from Github: http://github.com/artofmission/will_paginate/tree/master. 
 
@@ -46,12 +46,12 @@ To get a list of donations, you'd open up ./script/console, and type:
   
 === Creating a donation
 
-  persona = Persona.find(104996)
-  fund = Fund.find(11058)
-  source = Source.find(986)
+  persona = Persona.find(:first)
+  fund = Fund.find(:first)
+  source = Source.find(:first)
   donation = Donation.new(
-    :persona_id => persona.id, 
-    :new_split_attributes => [{:cents => 5002, :fund_id => fund.id}], 
+    :persona_id => persona.id,
+    :splits_attributes => [{:amount_in_cents => 1000, :fund_id => fund.id}],
     :donation_type_id => 1,
     :source_id => source.id
   )
