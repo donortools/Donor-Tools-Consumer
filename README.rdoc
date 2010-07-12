@@ -2,13 +2,13 @@
 
 == Welcome to the Donor Tools Consumer example application. 
 
-Before you get started, please have a look at our API documentation in our User Guide: http://localhost:3000/userguide/api and on our support forum: http://support.donortools.com/forums/47417/entries
+Before you get started, please have a look at our API documentation in our User Guide: http://donortools.com/userguide/api and on our support forum: http://support.donortools.com/forums/47417/entries
 
 Note to Rails developers: Donor Tools won't work out of the box with ActiveResource. This is because we use a customized version of the WillPaginate plugin that provides pagination collection information. You can download our fork of the gem from Github: http://github.com/artofmission/will_paginate/tree/master. 
 
 == License
 
-The Donor Tools API is a beta product and is subject to the API License Agreement: http://www.donortools.com/about/api_license
+Donor Tools API is a beta product and is provided on a best-effort basis. Use of the Donor Tools API is subject to the API License Agreement: www.donortools.com/about/api_license
 
 == Authentication
 
