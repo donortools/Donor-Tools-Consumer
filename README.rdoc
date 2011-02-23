@@ -1,10 +1,12 @@
 = Donor Tools API Consumer
 
+This example uses Rails 2. For Rails 3, see our Rails 3 example app: https://github.com/mysmallidea/Donor-Tools-Consumer-Rails-3
+
 == Welcome to the Donor Tools Consumer example application. 
 
 Before you get started, please have a look at our API documentation in our User Guide: http://donortools.com/userguide/api and on our support forum: http://support.donortools.com/forums/47417/entries
 
-Note to Rails developers: Donor Tools won't work out of the box with ActiveResource. This is because we use a customized version of the WillPaginate plugin that provides pagination collection information. You can download our fork of the gem from Github: http://github.com/artofmission/will_paginate/tree/master. 
+Please also join our Donor Tools API group on Google Groups: http://groups.google.com/group/donor-tools-api
 
 == License
 
@@ -19,6 +21,10 @@ Donor Tools' API uses HTTP Basic authentication. You'll need to sign up for a Do
 You'll need to sign up for a Donor Tools account in order to use the API. If you don't already have a Donor Tools account, you can get one by going to www.donortools.com/signup.
 
 Donor Tools' auditing feature logs each and every action for your account. Thus, if you provide your own username and password for the API (not recommended), all actions through the API will appear as being committed by you. We recommend creating a separate API user to provide finer grained reporting detail. This technique also helps protect your personal authentication parameters, as you can provide a different username and password. 
+
+== Pagination
+
+Donor Tools returns all results with pagination. You can use the [pox_paginate](https://github.com/c42/pox_paginate) gem to easily parse and paginate result sets. See this post for more info: http://groups.google.com/group/donor-tools-api/browse_thread/thread/8f9deb2a7ff12253
 
 == Example Usage
 
@@ -41,7 +47,7 @@ To get a list of donations, you'd open up ./script/console, and type:
 === Updating a donation
 
   d = Donation.find(12345)
-  d.splits.first.cents = 5001
+  d.splits.first.amount_in_cents = 5001
   d.save
   
 === Creating a donation
@@ -51,7 +57,7 @@ To get a list of donations, you'd open up ./script/console, and type:
   source = Source.find(:first)
   donation = Donation.new(
     :persona_id => persona.id,
-    :splits_attributes => [{:amount_in_cents => 1000, :fund_id => fund.id}],
+    :splits_attributes => [{:amount_in_cents => 2000, :fund_id => fund.id}],
     :donation_type_id => 1,
     :source_id => source.id
   )
